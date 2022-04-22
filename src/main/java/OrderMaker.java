@@ -18,7 +18,7 @@ public class OrderMaker {
     public OrderMaker() {
         messenger = new ConsoleMessenger();
         reader = new BufferedReader(new InputStreamReader(System.in));
-        store = new Store().new Builder()
+        store = new Store.Builder()
                 .setProduct(new Book("Братья Карамазовы", "Ф.М.Достоевский", 500))
                 .setProduct(new Book("Идиот", "Ф.М.Достоевский", 300))
                 .setProduct(new Book("Темные аллеи", "И.А.Бунин", 200))
@@ -28,14 +28,16 @@ public class OrderMaker {
     public void beginOrder() throws IOException {
         messenger.sendMessage("Здравствуйте. Для авторизации введите свой email и имя.");
         buyer = new Buyer(reader.readLine(), reader.readLine());
-        order = new Order(buyer);
+        order = new Order(buyer, messenger);
+        messenger.sendMessage("Список доступных товаров:");
+        store.printAvailableProducts();
     }
 
     public void orderAcceptance() throws IOException {
         while (isSumOrderSmallerThenMin()) {
-            System.out.println("Выберите товар, формат *Индекс Количество*");
-            System.out.println("Минимальная сумма заказа: " + minOrderSum);
-            System.out.println("Для завершения заказа введите END");
+            messenger.sendMessage("Выберите товар, формат *Индекс Количество*");
+            messenger.sendMessage("Минимальная сумма заказа: " + minOrderSum);
+            messenger.sendMessage("Для завершения заказа введите END");
             String input = reader.readLine();
             if (input.equalsIgnoreCase("END")) {
                 break;
@@ -44,9 +46,9 @@ public class OrderMaker {
             Product product = store.getProducts().get(Integer.parseInt(orderStr[0]) - 1);
             int count = Integer.parseInt(orderStr[1]);
             order.putProduct(product, count);
-            order.printOrder();
+            messenger.sendMessage(order.toString());
         }
-
+        messenger.sendMessage("Спасибо за Ваш заказ!");
     }
 
     public boolean isSumOrderSmallerThenMin() {
@@ -57,10 +59,7 @@ public class OrderMaker {
     public static void main(String[] args) throws IOException {
         OrderMaker orderMaker = new OrderMaker();
         orderMaker.beginOrder();
-        orderMaker.store.printAvailableProducts();
         orderMaker.orderAcceptance();
-        System.out.println("Спасибо за Ваш заказ!");
-
     }
 
 }

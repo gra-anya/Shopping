@@ -27,14 +27,13 @@ public class Store {
 
 
     public void printAvailableProducts() {
-        System.out.println("Список доступных товаров:");
         int index = 1;
         for (Product product : this.getProducts()) {
             System.out.println(index++ + ". " + product);
         }
     }
 
-    public class Builder {
+    public static class Builder {
         private List<Product> products;
         private Set<Buyer> buyers;
 

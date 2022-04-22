@@ -1,4 +1,5 @@
 
+import messenger.Messenger;
 import product.Product;
 
 import java.util.HashMap;
@@ -8,10 +9,24 @@ public class Order {
 
     private Map<Product, Integer> products;
     private Buyer buyer;
+    private Messenger messenger;
 
-    public Order(Buyer buyer) {
+    public Order(Buyer buyer, Messenger messenger) {
         products = new HashMap<>();
         this.buyer = buyer;
+        this.messenger = messenger;
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
+    }
+
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public Messenger getMessenger() {
+        return messenger;
     }
 
     public Order putProduct(Product product, int count) {
@@ -31,14 +46,18 @@ public class Order {
         return sum;
     }
 
-    public void printOrder() {
-        System.out.println("Ваш заказ");
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("Ваш заказ: \n");
         int index = 1;
         for (Product product : products.keySet()) {
-            System.out.println(product + " " + products.get(product));
+            builder.append(product)
+                    .append(" ")
+                    .append(products.get(product))
+                    .append("\n");
         }
-        System.out.println("Сумма вашего заказа: " + orderSum());
-
+        builder.append("Сумма вашего заказа: " + orderSum());
+        return builder.toString();
     }
 
 }
