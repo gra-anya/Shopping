@@ -9,12 +9,10 @@ public class Order {
 
     private Map<Product, Integer> products;
     private Buyer buyer;
-    private Messenger messenger;
 
-    public Order(Buyer buyer, Messenger messenger) {
+    public Order(Buyer buyer) {
         products = new HashMap<>();
         this.buyer = buyer;
-        this.messenger = messenger;
     }
 
     public Map<Product, Integer> getProducts() {
@@ -25,9 +23,6 @@ public class Order {
         return buyer;
     }
 
-    public Messenger getMessenger() {
-        return messenger;
-    }
 
     public Order putProduct(Product product, int count) {
         if (products.containsKey(product)) {

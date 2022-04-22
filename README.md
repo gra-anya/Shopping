@@ -4,7 +4,7 @@
 
 ***DRY***
 
-создан метод printAvailableProducts() [(строка 29)](https://github.com/gra-anya/Shopping/blob/main/src/main/java/Store.java) для вывода доступных товаров, вместо того чтобы постоянно повторять это кусок кода.
+создан метод availableProducts() [(строка 29)](https://github.com/gra-anya/Shopping/blob/main/src/main/java/Store.java) для вывода доступных товаров, вместо того чтобы постоянно повторять это кусок кода.
 
 ***SOLID***
 
@@ -14,7 +14,7 @@
 
 * *O - Принцип открытости/закрытости (программные сущности должны быть открыты для расширения, но закрыты для модификации)*
 
-Класс [OrderMaker](https://github.com/gra-anya/Shopping/blob/main/src/main/java/OrderMaker.java) использует метод sendMessage([строка 29](https://github.com/gra-anya/Shopping/blob/main/src/main/java/OrderMaker.java)) интерфейса [Messenger](https://github.com/gra-anya/Shopping/blob/main/src/main/java/messenger/Messenger.java)  для отправки сообщения. Для добавления новой функциональности (например отправка сообщений через Telegram) достаточно будет имплементировать в новый класс интерфейс [Messenger](https://github.com/gra-anya/Shopping/blob/main/src/main/java/messenger/Messenger.java) и реализовать в нем метод sendMessage, и все будет работать без модификаций.
+Класс [OrderMaker](https://github.com/gra-anya/Shopping/blob/main/src/main/java/OrderMaker.java) использует метод sendMessage( на [строке 29](https://github.com/gra-anya/Shopping/blob/main/src/main/java/OrderMaker.java)) интерфейса [Messenger](https://github.com/gra-anya/Shopping/blob/main/src/main/java/messenger/Messenger.java)  для отправки сообщения. Для добавления новой функциональности (например отправка сообщений через Telegram) достаточно будет имплементировать в новый класс интерфейс [Messenger](https://github.com/gra-anya/Shopping/blob/main/src/main/java/messenger/Messenger.java) и реализовать в нем метод sendMessage, и все будет работать без модификаций.
 
 * *L - Принцип замены Барбары Лисков (Наследники должны логически иметь возможность сыграть роль своих предков)*
 
@@ -22,4 +22,4 @@
 
 * *D - принцип инверсии зависимостей(Всё зависит от абстракций (интерфейсов), а не от деталей реализации)*
 
-Класс [Order](https://github.com/gra-anya/Shopping/blob/main/src/main/java/Order.java) использует в своем методе (строка 17) абстрактный класс [Product](https://github.com/gra-anya/Shopping/blob/main/src/main/java/product/Product.java), при добавлении нового класса-товара достаточно будет унаследовать его от [Product](https://github.com/gra-anya/Shopping/blob/main/src/main/java/product/Product.java), чтобы класс [Order](https://github.com/gra-anya/Shopping/blob/main/src/main/java/Order.java) его мог с ним работать.
+Класс [Order](https://github.com/gra-anya/Shopping/blob/main/src/main/java/Order.java) использует в своем методе (строка 27) абстрактный класс [Product](https://github.com/gra-anya/Shopping/blob/main/src/main/java/product/Product.java), при добавлении нового класса-товара достаточно будет унаследовать его от [Product](https://github.com/gra-anya/Shopping/blob/main/src/main/java/product/Product.java), чтобы класс [Order](https://github.com/gra-anya/Shopping/blob/main/src/main/java/Order.java) его мог с ним работать.

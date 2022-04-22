@@ -28,9 +28,9 @@ public class OrderMaker {
     public void beginOrder() throws IOException {
         messenger.sendMessage("Здравствуйте. Для авторизации введите свой email и имя.");
         buyer = new Buyer(reader.readLine(), reader.readLine());
-        order = new Order(buyer, messenger);
+        order = new Order(buyer);
         messenger.sendMessage("Список доступных товаров:");
-        store.printAvailableProducts();
+        messenger.sendMessage(store.availableProducts());
     }
 
     public void orderAcceptance() throws IOException {

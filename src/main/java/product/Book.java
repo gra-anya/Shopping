@@ -40,6 +40,6 @@ public class Book extends Product {
     public String toString() {
         return name +
                 ", цена: " + price +
-                " уе, количество:";
+                " уе";
     }
 }

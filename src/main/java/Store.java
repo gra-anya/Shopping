@@ -26,11 +26,16 @@ public class Store {
     }
 
 
-    public void printAvailableProducts() {
+    public String  availableProducts() {
+        StringBuilder builder = new StringBuilder();
         int index = 1;
         for (Product product : this.getProducts()) {
-            System.out.println(index++ + ". " + product);
+            builder.append(index++)
+                    .append(". ")
+                    .append(product)
+                    .append("\n");
         }
+        return builder.toString();
     }
 
     public static class Builder {

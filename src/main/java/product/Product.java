@@ -25,7 +25,6 @@ public abstract class Product {
     @Override
     public String toString() {
         return name +
-                ", цена: " + price +
-                "уе, количество:";
+                ", цена: " + price + "уе";
     }
 }
